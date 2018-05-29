@@ -13,3 +13,5 @@ If check = True Then
   V(2) = Application.TDist(Abs(T), n - 2, 2)
   PEARSONCORRETEST = V
 End If
+'Application.Speech.Speak ("Con un nivel de confianza de" & Round(Application.TDist(Abs(t), n - 2, 2), 5) & "Vefirica la normalidad de tu muestra para validar este resultado")
+End Function
