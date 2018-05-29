@@ -1,0 +1,23 @@
+Public Function UNIQUERND(A As Variant, b As Variant) As Variant
+ Dim k%, p%, n%, flag As Boolean, X() As Variant
+  n = b - A + 1
+  k = 1
+  flag = False
+  ReDim X(1)
+   X(1) = Application.RandBetween(A, b)
+  Do While k <= 10
+   Do While flag = False
+   Randomize
+    p = Application.RandBetween(A, b)
+    resultado = Application.Match(p, X, False)
+     If IsError(resultado) Then
+      k = k + 1
+      ReDim Preserve X(k)
+      X(k) = p
+       check = True
+      Else
+       flag = False
+     End If
+  Loop
+ Loop
+End Function
