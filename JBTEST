@@ -1,0 +1,22 @@
+Public Function JBTEST(Rango As Range, p As Double) As Variant
+  If IsEmpty(Rango) Then
+   Application.MsgBox "You must entry valid data"
+    Exit Function
+     Else
+      Application.Volatile
+      Dim X() As Variant, i%, j%, n%, M%, s!, k!
+       n = Rango.Rows.Count
+       M = Rango.Columns.Count
+        If n <= M Then
+         Rango = Application.Transpose(Rango)
+          End If
+        s = Application.Skew(Rango)
+            Debug.Print s
+        k = Application.Kurt(Rango)
+             Debug.Print k
+         ReDim X(2)
+          X(1) = (n - p + 1) / 6 * (s ^ 2 + (k - 3) ^ 2 / 4)
+          X(2) = Application.ChiSq_Dist(X(1), 2, 0)
+        JBTEST = X
+       End If
+End Function
