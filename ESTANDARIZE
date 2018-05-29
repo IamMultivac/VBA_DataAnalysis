@@ -1,0 +1,20 @@
+Function ESTANDARIZE(Rango As Range) As Variant
+Dim check As Boolean
+  check = True
+If IsNull(Rango) Then
+ check = False
+End If
+ If check = True Then
+ Application.Volatile
+  Dim i%, j%, n%, M%, X() As Variant
+ n = Rango.Rows.Count
+ M = Rango.Columns.Count
+ ReDim X(n, M)
+  For i = 1 To n Step 1
+   For j = 1 To M Step 1
+    X(i, j) = (Rango(i, j) - Application.Min(Application.Index(Rango, , j))) / (Application.Max(Application.Index(Rango, , j)) - Application.Min(Application.Index(Rango, , j)))
+   Next j
+  Next i
+ End If
+ 
+ ESTANDARIZE = X
