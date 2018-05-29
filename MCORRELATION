@@ -1,0 +1,10 @@
+Function MCORRELATION(Rango As Range) As Variant
+Dim X As Variant, y As Variant, s As Integer, T As Integer, C() As Variant
+ReDim C(Rango.Columns.Count, Rango.Columns.Count)
+For i = 1 To Rango.Columns.Count Step 1
+ For j = 1 To i Step 1
+C(i, j) = Application.Correl(Application.Index(Rango, , i), Application.Index(Rango, , j))
+ Next j
+Next i
+ MCORRELATION = C
+End Function
