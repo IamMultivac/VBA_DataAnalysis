@@ -1,0 +1,12 @@
+Function MVARCOVAR(Rango As Range) As Variant
+Dim C() As Variant, i As Long, k As Long, j As Long
+k = Rango.Columns.Count
+Debug.Print k
+ReDim C(k, k)
+ For i = 1 To k Step 1
+  For j = 1 To k Step 1
+  C(i, j) = Application.Covar(Application.Index(Rango, , i), Application.Index(Rango, , j))
+  Next j
+ Next i
+MVARCOVAR = C
+End Function
