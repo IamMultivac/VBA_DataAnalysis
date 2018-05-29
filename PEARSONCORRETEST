@@ -1,0 +1,15 @@
+Function PEARSONCORRETEST(vector1 As Range, vector2 As Range) As Variant
+ Dim R As Variant, n As Double, T As Variant, check As Boolean, V() As Variant
+  check = True
+   If Not IsNull(vector1) Or IsNull(vector2) Then
+    check = True
+End If
+If check = True Then
+  R = Application.Correl(vector1, vector2)
+  n = Application.Max(vector1.Rows.Count, vector1.Columns.Count)
+  T = R * Sqr(n - 2) / (Sqr(1 - R ^ 2))
+  ReDim V(2)
+  V(1) = R
+  V(2) = Application.TDist(Abs(T), n - 2, 2)
+  PEARSONCORRETEST = V
+End If
