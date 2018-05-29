@@ -1,0 +1,17 @@
+Function TRIANGULAR(Min As Long, Mode As Long, Max As Long) As Double
+Application.Volatile
+Dim check As Boolean
+check = True
+If Min > Max Or Mode > Max Or Mode < Min Then
+ check = False
+End If
+ If check = True Then
+  Dim aleatorio: aleatorio = Rnd()
+  If aleatorio < (Mode - Min) / (Max - Min) Then
+   TRIANGULAR = Sqr(aleatorio * (Max - Min) * (Mode - Min)) + Min
+Else
+ TRIANGULAR = Max - Sqr((1 - aleatorio) * (Max - Min) * (Max - Mode))
+End If
+Else
+TRIANGULAR = 0
+End If
