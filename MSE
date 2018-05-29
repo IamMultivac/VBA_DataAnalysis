@@ -1,0 +1,14 @@
+Function MSE(RangoA As Range, RangoB As Range) As Variant
+ Dim X() As Variant
+ Dim y() As Variant
+ Dim z() As Variant
+ Dim dif As Variant
+ dif = 0
+  X = RangoA
+  y = RangoB
+  ReDim z(UBound(X), 1)
+For i = 1 To UBound(X)
+ z(i, 1) = (X(i, 1) - y(i, 1)) ^ 2
+Next i
+MSE = Sqr(Application.Average(z))
+End Function
