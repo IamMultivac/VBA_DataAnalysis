@@ -1,0 +1,22 @@
+Function SPEARMANCORRTEST(vector1 As Range, vector2 As Range) As Variant
+ Dim R As Variant, n As Double, T As Variant, check As Boolean, O1() As Variant, O2() As Variant, i As Double
+  check = True
+   If Not IsNull(vector1) Or IsNull(vector2) Then
+    check = True
+End If
+If check = True Then
+V1 = vector1: V2 = vector2
+  n = Application.Max(vector1.Rows.Count, vector1.Columns.Count)
+  ReDim O1(n): ReDim O2(n): ReDim V(2)
+  For i = 1 To n
+   O1(i) = Application.Rank(vector1(i), vector1, True)
+   O2(i) = Application.Rank(vector2(i), vector2, True)
+  Next i
+  R = Application.Pearson(O1, O2)
+  T = R * Sqr(n - 2) / (Sqr(1 - R ^ 2))
+  V(1) = R
+  V(2) = Application.TDist(Abs(T), n - 2, 2)
+  SPEARMANCORRTEST = V
+End If
+
+End Function
