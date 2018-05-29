@@ -1,0 +1,30 @@
+Function DEUCLIDIANA(X As Range, y As Range) As Variant
+Dim C() As Variant, check As Boolean
+check = True
+If IsNull(X) Or IsNull(y) Then
+check = False
+End If
+If check = True Then
+Dim i As Long, n As Long
+n = Application.Max(X.Rows.Count, X.Columns.Count)
+ReDim C(n)
+ For i = 1 To n
+  C(i) = X(i) - y(i)
+ Next i
+DEUCLIDIANA = Sqr(Application.SumProduct(C, C))
+Else
+MsgBox "Valores no válidos"
+End If
+End Function
+Function MATRIXPOWER(M As Range, n As Double) As Variant
+   Dim i As Double
+   MATRIXPOWER = M
+   If n < 1 Then
+    GoTo fin
+     Else
+      For i = 2 To n
+       MATRIXPOWER = Application.MMult(MATRIXPOWER, M)
+         Next i
+    End If
+fin:
+End Function
