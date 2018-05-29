@@ -1,0 +1,18 @@
+Public Function ACOF(Rango As Range) As Variant
+ Dim X(), y(), z() As Variant
+ Dim i, n, mu, k, j As Double
+  n = Rango.Rows.Count
+  mu = Application.Average(Rango)
+  k = 1
+  ReDim z(n - k)
+ Do Until k = n - 1
+ ReDim X(n - k), y(n - k)
+   For i = 1 To n - k Step 1
+    X(i) = Rango(i) - mu
+    y(i) = Rango(i + k) - mu
+   Next i
+z(k) = Application.SumProduct(X, y) / Application.DevSq(Rango)
+ k = k + 1
+Loop
+ACOF = Application.Transpose(z)
+End Function
