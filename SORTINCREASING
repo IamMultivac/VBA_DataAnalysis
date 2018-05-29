@@ -1,0 +1,24 @@
+ Function SORTINCREASING(Rango As Range) As Variant
+ Dim check As Boolean
+ check = True
+  If IsNull(Rango) Then
+   check = False
+  End If
+  If check = True Then
+  Application.Volatile
+ Dim X() As Variant, n As Double, M As Double, i As Double, j As Double, k As Long
+ n = Rango.Rows.Count
+ M = Rango.Columns.Count
+ k = n * M
+  ReDim X(n, M)
+   For i = 1 To n Step 1
+    For j = 1 To M Step 1
+    X(i, j) = Application.Large(Rango, k)
+     k = k - 1
+   Next j
+  Next i
+SORTINCREASING = X
+Else
+ Exit Function
+End If
+ End Function
